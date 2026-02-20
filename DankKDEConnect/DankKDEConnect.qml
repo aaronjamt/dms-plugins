@@ -41,9 +41,11 @@ PluginComponent {
     }
     ccWidgetIsActive: hasDevice && selectedDevice?.isReachable
 
+    ccDetailHeight: 350
+
     ccDetailContent: Component {
         KDEConnectDetailContent {
-            listHeight: 200
+            listHeight: 300
         }
     }
 
@@ -115,8 +117,13 @@ PluginComponent {
             });
             break;
         case "share":
-            shareDeviceId = deviceId;
-            showShareDialog = true;
+            if (showShareDialog && shareDeviceId === deviceId) {
+                showShareDialog = false;
+                shareDeviceId = "";
+            } else {
+                shareDeviceId = deviceId;
+                showShareDialog = true;
+            }
             break;
         case "sms":
             closePopout();
