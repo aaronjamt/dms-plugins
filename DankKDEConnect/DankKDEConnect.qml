@@ -42,6 +42,7 @@ PluginComponent {
     ccWidgetIsActive: hasDevice && selectedDevice?.isReachable
 
     ccDetailHeight: 350
+    onCcWidgetExpanded: PhoneConnectService.detectBackend()
 
     ccDetailContent: Component {
         KDEConnectDetailContent {
@@ -280,6 +281,8 @@ PluginComponent {
     popoutContent: Component {
         PopoutComponent {
             id: popout
+
+            Component.onCompleted: PhoneConnectService.detectBackend()
 
             headerText: root.serviceName
             detailsText: PhoneConnectService.connectedCount + " connected • " + PhoneConnectService.pairedCount + " paired"
