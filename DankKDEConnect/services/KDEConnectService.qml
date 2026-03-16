@@ -642,4 +642,11 @@ Singleton {
             return "battery_1_bar";
         return "battery_alert";
     }
+
+    Timer {
+      interval: 60 * 1000
+      running: true
+      repeat: true
+      onTriggered: refreshDevices()
+    }
 }
